@@ -59,7 +59,7 @@ DIBHeader getDIBHeader(FILE *input){
             exit(1);
     }
 
-    if(fread(dibOut, size, 1, input)){
+    if(fread(dibOut, size, 1, input) != 1){
         fprintf(stderr, "Failed to read DIBHeader from file\n");
         exit(1);
     }
@@ -82,7 +82,7 @@ void* getDIBPtr(DIBHeader dibHeader){
 
 
 void putDIBHeader( DIBHeader dibHeader, FILE *output){
-    if (fwrite(getDIBPtr(dibHeader), dibHeader.type, 1, output)){
+    if (fwrite(getDIBPtr(dibHeader), dibHeader.type, 1, output) != 1){
         fprintf(stderr, "Failed to write DIBHeader of type %i\n", dibHeader.type);
         exit(1);
     }

@@ -55,7 +55,7 @@ Pixels getPixels(DIBHeader dibHeader ,FILE *fileIn){
 
     pixels.pixels = malloc(pixels.size);
 
-    if (fread(pixels.pixels, pixels.size, 1, fileIn)){
+    if (fread(pixels.pixels, pixels.size, 1, fileIn) != 1){
         fprintf(stderr, "ERROR reading Pixels h%i w%i s%i b%i \n", pixels.height, pixels.width, pixels.size, pixels.bits);
         exit(1);
     }
@@ -64,6 +64,9 @@ Pixels getPixels(DIBHeader dibHeader ,FILE *fileIn){
 }
 
 
-void putPixels(Pixels pixels ,FILE *output){
-
+void putPixels(Pixels pixels ,FILE *fileOut){
+    if (fwrite(pixels.pixels, pixels.size, 1, fileOut) != 1){
+        fprintf(stderr, "ERROR writhing Pixels\n");
+        exit(1);
+    }
 }

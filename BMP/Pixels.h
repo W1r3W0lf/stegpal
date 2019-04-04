@@ -32,6 +32,6 @@ void destructPixels(Pixels pixels);
 
 Pixels getPixels(DIBHeader dibHeader ,FILE *fileIn);
 
-void putPixels(Pixels pixels ,FILE *output);
+void putPixels(Pixels pixels ,FILE *fileOut);
 
 #endif //STEGPAL_PIXELS_H

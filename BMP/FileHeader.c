@@ -9,7 +9,7 @@
 
 BITMAPFILEHEADER getBMPHead(FILE* input){
     BITMAPFILEHEADER bmpFileHeader;
-    if (fread(&bmpFileHeader, sizeof(BITMAPFILEHEADER), 1, input)){
+    if (fread(&bmpFileHeader, sizeof(BITMAPFILEHEADER), 1, input) != 1 ){
         fprintf(stderr, "Error reading BMPHeader from file\n");
         exit(1);
     }
@@ -17,7 +17,7 @@ BITMAPFILEHEADER getBMPHead(FILE* input){
 }
 
 void putBMPHead(BITMAPFILEHEADER fileHeader, FILE* output){
-    if(fwrite(&fileHeader, sizeof(BITMAPFILEHEADER), 1, output)){
+    if(fwrite(&fileHeader, sizeof(BITMAPFILEHEADER), 1, output) != 1){
         fprintf(stderr, "Error writing BMPHeader to file\n");
         exit(1);
     }
