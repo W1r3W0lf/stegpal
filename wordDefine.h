@@ -7,7 +7,6 @@
 
 #include <stdint.h>
 
-
 typedef int16_t     WORD;
 typedef int32_t     DWORD;
 typedef int32_t     LONG;

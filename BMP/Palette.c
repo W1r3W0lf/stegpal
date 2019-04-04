@@ -6,6 +6,19 @@
 
 #include <stdlib.h>
 
+
+Palette constructPalette(){
+    Palette palette;
+    palette.size = 0;
+    palette.pRgbquad = NULL;
+    return palette;
+}
+
+void destructPalette(Palette palette){
+    free(palette.pRgbquad);
+}
+
+
 void showRGBquad(RGBQUAD rgbquad){
     printf("RGBQuad R 0x%x G 0x%x B 0x%x 0 0x%x", rgbquad.rgbRed, rgbquad.rgbGreen ,rgbquad.rgbBlue, rgbquad.rgbReserved);
 }
@@ -25,11 +38,11 @@ void putRGBQuad(RGBQUAD *rgbquad ,FILE *fileout){
 
 Palette getPalette(DIBHeader dibHeader, FILE *filein){
 
-    Palette palette;
+    Palette palette = constructPalette();
 
     switch (dibHeader.type){
         case core:
-            // Find a way to determen the pallet size for core
+            // Find a way to determine the pallet size for core
             break;
         case info:
             palette.size = dibHeader.info->biClrUsed;
@@ -42,7 +55,8 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
             break;
     }
 
-    // TODO Palette I think that this might require using the heap
+    palette.pRgbquad = malloc(palette.size);
+
     if(fread(palette.pRgbquad, palette.size, 1, filein)){
         fprintf(stderr, "ERROR failed to read in palette. palette size %d\n", palette.size );
         exit(1);

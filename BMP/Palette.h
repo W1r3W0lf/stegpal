@@ -25,6 +25,10 @@ typedef struct Palette{
     RGBQUAD**   pRgbquad;
 } Palette;
 
+Palette constructPalette();
+
+void destructPalette(Palette palette);
+
 void showRGBquad(RGBQUAD rgbquad);
 
 RGBQUAD getRGBquad(FILE *filein);

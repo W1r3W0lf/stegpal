@@ -5,14 +5,11 @@
 #ifndef STEGPAL_BITMAP_H
 #define STEGPAL_BITMAP_H
 
-
-
 #include "../wordDefine.h"
 #include "FileHeader.h"
 #include "DIBHeader.h"
 #include "Palette.h"
 #include "Pixels.h"
-
 
 
 typedef struct BMP {
