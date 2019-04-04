@@ -29,6 +29,11 @@ DIBHeader getDIBHeader(FILE *input){
     // save and restore the position of the file stream to see the size of the DIBHeader
     fgetpos(input, &pos);
     fread(&size, 1, 1, input);
+    fread(&size, 1, 1, input);
+    fread(&size, 1, 1, input);
+    fread(&size, 1, 1, input);
+    fread(&size, 1, 1, input);
+    fread(&size, 1, 1, input);
     fsetpos(input, &pos);
 
     void* dibOut;

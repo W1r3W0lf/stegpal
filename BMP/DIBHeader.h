@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-typedef struct tagBITMAPCOREHEADER {
+typedef struct __attribute__((__packed__)) tagBITMAPCOREHEADER {
     DWORD bcSize;
     WORD  bcWidth;
     WORD  bcHeight;
@@ -18,7 +18,7 @@ typedef struct tagBITMAPCOREHEADER {
     WORD  bcBitCount;
 } BITMAPCOREHEADER, *PBITMAPCOREHEADER;
 
-typedef struct tagBITMAPINFOHEADER {
+typedef struct __attribute__((__packed__)) tagBITMAPINFOHEADER {
     DWORD biSize;
     LONG  biWidth;
     LONG  biHeight;
@@ -32,7 +32,7 @@ typedef struct tagBITMAPINFOHEADER {
     DWORD biClrImportant;
 } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
 
-typedef struct {
+typedef struct __attribute__((__packed__)) {
     DWORD        bV4Size;
     LONG         bV4Width;
     LONG         bV4Height;
@@ -55,7 +55,7 @@ typedef struct {
     DWORD        bV4GammaBlue;
 } BITMAPV4HEADER, *PBITMAPV4HEADER;
 
-typedef struct {
+typedef struct __attribute__((__packed__)) {
     DWORD        bV5Size;
     LONG         bV5Width;
     LONG         bV5Height;

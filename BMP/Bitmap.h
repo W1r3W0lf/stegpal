@@ -25,6 +25,9 @@ void destructBMP(BMP bmp);
 
 BMP getBMP(char* fileName);
 
+// FOR DEBUG ONLY
+void copyBMP(char* nameIn, char* nameOut);
+
 void putBMP(BMP *bmp, char* fileName);
 
 #endif //STEGPAL_BITMAP_H

@@ -25,7 +25,7 @@ void destructBMP(BMP bmp){
 }
 
 BMP getBMP(char* fileName){
-    FILE* fileIn = fopen(fileName, "rb");
+    FILE* fileIn = fopen(fileName, "r");
 
     BMP bmp = constructBMP();
     bmp.bmpFileHeader   = getBMPHead(fileIn);
@@ -38,8 +38,29 @@ BMP getBMP(char* fileName){
     return bmp;
 }
 
+void copyBMP(char* nameIn, char* nameOut){
+    FILE* fileIn = fopen(nameIn, "r");
+    FILE* fileOut = fopen(nameOut, "w");
+
+    BMP bmp = constructBMP();
+    bmp.bmpFileHeader   = getBMPHead(fileIn);
+    putBMPHead(bmp.bmpFileHeader, fileOut);
+    bmp.bmpDIBHeader    = getDIBHeader(fileIn);
+    putDIBHeader(bmp.bmpDIBHeader, fileOut);
+    bmp.bmpPalette      = getPalette(bmp.bmpDIBHeader, fileIn);
+    putPalette(bmp.bmpPalette, fileOut);
+    bmp.bmpPixels       = getPixels(bmp.bmpDIBHeader , fileIn);
+    putPixels(bmp.bmpPixels, fileOut);
+
+    destructBMP(bmp);
+
+    fclose(fileIn);
+    fclose(fileOut);
+}
+
+
 void putBMP(BMP *bmp, char* fileName) {
-    FILE* fileOut = fopen(fileName, "wb");
+    FILE* fileOut = fopen(fileName, "w");
 
     putBMPHead(bmp->bmpFileHeader, fileOut);
     putDIBHeader(bmp->bmpDIBHeader, fileOut);

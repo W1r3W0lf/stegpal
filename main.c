@@ -9,11 +9,7 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    BMP bmp = getBMP(argv[1]);
-
-    putBMP(&bmp, argv[2]);
-
-    destructBMP(bmp);
+    copyBMP(argv[1], argv[2]);
 
     return 0;
 }

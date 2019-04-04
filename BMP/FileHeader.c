@@ -13,7 +13,6 @@ BITMAPFILEHEADER getBMPHead(FILE* input){
         fprintf(stderr, "Error reading BMPHeader from file\n");
         exit(1);
     }
-    return bmpFileHeader;
 }
 
 void putBMPHead(BITMAPFILEHEADER fileHeader, FILE* output){

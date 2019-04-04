@@ -10,13 +10,15 @@
 
 #include <stdio.h>
 
+#include <stdint.h>
 
-#define bmpHeaderSize = 14;
+
+//#define bmpHeaderSize = 14;
 
 // This looks back words little-endian?
-#define int16_t bmpMagic = 0x4d42;
+//#define int16_t bmpMagic = 0x4d42;
 
-typedef struct tagBITMAPFILEHEADER {
+typedef struct __attribute__((__packed__)) tagBITMAPFILEHEADER {
     WORD  bfType;
     DWORD bfSize;
     WORD  bfReserved1;
