@@ -15,7 +15,9 @@ Palette constructPalette(){
 }
 
 void destructPalette(Palette palette){
-    free(palette.pRgbquad);
+    if(palette.size) {
+        free(palette.pRgbquad);
+    }
 }
 
 
@@ -55,7 +57,13 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
             break;
     }
 
+    if (! palette.size){
+        return palette;
+    }
+
     palette.pRgbquad = malloc(palette.size);
+
+    // What if there is no pallet?
 
     if(fread(palette.pRgbquad, palette.size, 1, filein) != 1){
         fprintf(stderr, "ERROR failed to read in palette. palette size %d\n", palette.size );
@@ -66,7 +74,7 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
 }
 
 void putPalette(Palette palette, FILE *fileout){
-    if(fwrite(palette.pRgbquad, palette.size, 1, fileout) != 1){
+    if( palette.size && fwrite(palette.pRgbquad, palette.size, 1, fileout) != 1){
         fprintf(stderr, "ERROR failed to write palette to file. palette size %d\n", palette.size);
         exit(1);
     }
