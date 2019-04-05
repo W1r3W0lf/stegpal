@@ -33,25 +33,29 @@ Pixels getPixels(DIBHeader dibHeader ,FILE *fileIn){
             pixels.bits = dibHeader.core->bcBitCount;
             pixels.height = dibHeader.core->bcHeight;
             pixels.width = dibHeader.core->bcWidth;
+            pixels.size = (int)( 1 + ((pixels.height * pixels.width - 1) / (pixels.bits/8.0)));
             break;
         case info:
             pixels.bits = dibHeader.info->biBitCount;
             pixels.height = dibHeader.info->biHeight;
             pixels.width = dibHeader.info->biWidth;
+            pixels.size = (int)( 1 + ((pixels.height * pixels.width - 1) / (pixels.bits/8.0)));
             break;
         case v4:
             pixels.bits = dibHeader.v4->bV4BitCount;
             pixels.height = dibHeader.v4->bV4Height;
             pixels.width = dibHeader.v4->bV4Height;
+            pixels.size = dibHeader.v4->bV4SizeImage;
             break;
         case v5:
             pixels.bits = dibHeader.v5->bV5BitCount;
             pixels.height = dibHeader.v5->bV5Height;
             pixels.width = dibHeader.v5->bV5Height;
+            pixels.size =dibHeader.v5->bV5SizeImage;
             break;
     }
 
-    pixels.size = (int)( 1 + ((pixels.height * pixels.width - 1) / (pixels.bits/8.0)));
+
 
     pixels.pixels = malloc(pixels.size);
 
