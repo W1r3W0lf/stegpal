@@ -100,12 +100,12 @@ typedef struct DIBHeader{
 
 DIBHeader constructDIBHeader();
 
-DIBHeader getDIBHeader(FILE *input);
+DIBHeader getDIBHeader(FILE *fileIn);
 
 void* getDIBPtr(DIBHeader dibHeader);
 
 void destructDIBHeader(DIBHeader dibHeader);
 
-void putDIBHeader( DIBHeader dibHeader, FILE *output);
+void putDIBHeader( DIBHeader dibHeader, FILE *fileOut);
 
 #endif //STEGPAL_DIBHEADER_H

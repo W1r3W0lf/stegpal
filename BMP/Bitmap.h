@@ -10,13 +10,18 @@
 #include "DIBHeader.h"
 #include "Palette.h"
 #include "Pixels.h"
+#include "gap.h"
 
 
 typedef struct BMP {
     BITMAPFILEHEADER    bmpFileHeader;
     DIBHeader           bmpDIBHeader;
     Palette             bmpPalette;
+    Gap                 bmpGap1;
     Pixels              bmpPixels;
+    Gap                 bmpGap2;
+
+
 } BMP;
 
 BMP constructBMP();

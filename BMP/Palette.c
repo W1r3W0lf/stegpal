@@ -45,6 +45,7 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
     switch (dibHeader.type){
         case core:
             // Find a way to determine the pallet size for core
+            palette.size = 0;
             break;
         case info:
             palette.size = dibHeader.info->biClrUsed;

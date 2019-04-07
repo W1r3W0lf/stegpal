@@ -20,16 +20,16 @@ void destructDIBHeader(DIBHeader dibHeader){
     free(getDIBPtr(dibHeader));
 }
 
-DIBHeader getDIBHeader(FILE *input){
+DIBHeader getDIBHeader(FILE *fileIn){
     DIBHeader dibHeader = constructDIBHeader();
 
     fpos_t pos;
     int8_t size;
 
     // save and restore the position of the file stream to see the size of the DIBHeader
-    fgetpos(input, &pos);
-    fread(&size, 1, 1, input);
-    fsetpos(input, &pos);
+    fgetpos(fileIn, &pos);
+    fread(&size, 1, 1, fileIn);
+    fsetpos(fileIn, &pos);
 
     void* dibOut;
 
@@ -59,7 +59,7 @@ DIBHeader getDIBHeader(FILE *input){
             exit(1);
     }
 
-    if(fread(dibOut, size, 1, input) != 1){
+    if(fread(dibOut, size, 1, fileIn) != 1){
         fprintf(stderr, "Failed to read DIBHeader from file\n");
         exit(1);
     }
@@ -81,8 +81,8 @@ void* getDIBPtr(DIBHeader dibHeader){
 }
 
 
-void putDIBHeader( DIBHeader dibHeader, FILE *output){
-    if (fwrite(getDIBPtr(dibHeader), dibHeader.type, 1, output) != 1){
+void putDIBHeader( DIBHeader dibHeader, FILE *fileOut){
+    if (fwrite(getDIBPtr(dibHeader), dibHeader.type, 1, fileOut) != 1){
         fprintf(stderr, "Failed to write DIBHeader of type %i\n", dibHeader.type);
         exit(1);
     }

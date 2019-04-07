@@ -27,9 +27,9 @@ typedef struct __attribute__((__packed__)) tagBITMAPFILEHEADER {
 } BITMAPFILEHEADER, *PBITMAPFILEHEADER;
 
 
-BITMAPFILEHEADER getBMPHead(FILE* input);
+BITMAPFILEHEADER getBMPHead(FILE* fileIn);
 
-void putBMPHead(BITMAPFILEHEADER fileHeader, FILE* output);
+void putBMPHead(BITMAPFILEHEADER fileHeader, FILE* fileOut);
 
 
 #endif //STEGPAL_FILEHEADER_H
