@@ -33,13 +33,15 @@ Pixels getPixels(DIBHeader dibHeader ,FILE *fileIn){
             pixels.bits = dibHeader.core->bcBitCount;
             pixels.height = dibHeader.core->bcHeight;
             pixels.width = dibHeader.core->bcWidth;
-            pixels.size = (int)( 1 + ((pixels.height * pixels.width - 1) / (pixels.bits/8.0)));
+            int rowSizeCore = (int)(1+((pixels.bits * pixels.width -1))/32.0)*4;
+            pixels.size = rowSizeCore * pixels.height;
             break;
         case info:
             pixels.bits = dibHeader.info->biBitCount;
             pixels.height = dibHeader.info->biHeight;
             pixels.width = dibHeader.info->biWidth;
-            pixels.size = (int)( 1 + ((pixels.height * pixels.width - 1) / (pixels.bits/8.0)));
+            int rowSizeInfo = (int)(1+((pixels.bits * pixels.width -1))/32.0)*4;
+            pixels.size = rowSizeInfo * pixels.height;
             break;
         case v4:
             pixels.bits = dibHeader.v4->bV4BitCount;
