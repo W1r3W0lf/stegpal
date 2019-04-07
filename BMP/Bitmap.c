@@ -13,6 +13,7 @@ BMP constructBMP(){
     memset(&bmp.bmpDIBHeader, 0, sizeof(BITMAPFILEHEADER));
     bmp.bmpDIBHeader    = constructDIBHeader();
     bmp.bmpPalette      = constructPalette();
+    bmp.bmpGap1         = constructGap();
     bmp.bmpPixels       = constructPixels();
 
     return bmp;
@@ -21,6 +22,7 @@ BMP constructBMP(){
 void destructBMP(BMP bmp){
     destructDIBHeader(bmp.bmpDIBHeader);
     destructPalette(bmp.bmpPalette);
+    destructGap(bmp.bmpGap1);
     destructPixels(bmp.bmpPixels);
 }
 
@@ -31,6 +33,7 @@ BMP getBMP(char* fileName){
     bmp.bmpFileHeader   = getBMPHead(fileIn);
     bmp.bmpDIBHeader    = getDIBHeader(fileIn);
     bmp.bmpPalette      = getPalette(bmp.bmpDIBHeader, fileIn);
+    bmp.bmpGap1         = getGap1(bmp.bmpFileHeader, fileIn);
     bmp.bmpPixels       = getPixels(bmp.bmpDIBHeader , fileIn);
 
     fclose(fileIn);
@@ -49,6 +52,8 @@ void copyBMP(char* nameIn, char* nameOut){
     putDIBHeader(bmp.bmpDIBHeader, fileOut);
     bmp.bmpPalette      = getPalette(bmp.bmpDIBHeader, fileIn);
     putPalette(bmp.bmpPalette, fileOut);
+    bmp.bmpGap1         = getGap1(bmp.bmpFileHeader, fileIn);
+    putGap(bmp.bmpGap1, fileOut);
     bmp.bmpPixels       = getPixels(bmp.bmpDIBHeader , fileIn);
     putPixels(bmp.bmpPixels, fileOut);
 
@@ -65,6 +70,7 @@ void putBMP(BMP *bmp, char* fileName) {
     putBMPHead(bmp->bmpFileHeader, fileOut);
     putDIBHeader(bmp->bmpDIBHeader, fileOut);
     putPalette(bmp->bmpPalette, fileOut);
+    putGap(bmp->bmpGap1, fileOut);
     putPixels(bmp->bmpPixels, fileOut);
 
     fclose(fileOut);

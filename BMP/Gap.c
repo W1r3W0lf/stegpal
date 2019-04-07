@@ -2,7 +2,7 @@
 // Created by wire_wolf on 4/7/19.
 //
 
-#include "gap.h"
+#include "Gap.h"
 #include <stdlib.h>
 
 Gap constructGap(){

@@ -10,7 +10,7 @@
 #include "DIBHeader.h"
 #include "Palette.h"
 #include "Pixels.h"
-#include "gap.h"
+#include "Gap.h"
 
 
 typedef struct BMP {
