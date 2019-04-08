@@ -17,11 +17,8 @@ typedef struct BMP {
     BITMAPFILEHEADER    bmpFileHeader;
     DIBHeader           bmpDIBHeader;
     Palette             bmpPalette;
-    Gap                 bmpGap1;
+    Gap                 bmpGap;
     Pixels              bmpPixels;
-    Gap                 bmpGap2;
-
-
 } BMP;
 
 BMP constructBMP();
@@ -30,9 +27,22 @@ void destructBMP(BMP bmp);
 
 BMP getBMP(char* fileName);
 
-// FOR DEBUG ONLY
-void copyBMP(char* nameIn, char* nameOut);
+void putBMP(BMP bmp, char* fileName);
 
-void putBMP(BMP *bmp, char* fileName);
+// an ICOBMP is a BMP file without the magic bytes in the file header and so no gap
+typedef struct ICOBMP {
+    DIBHeader           bmpDIBHeader;
+    Palette             bmpPalette;
+    Pixels              bmpPixels;
+} ICOBMP;
+
+ICOBMP constructICOBMP();
+
+void destructICOBMP(ICOBMP icobmp);
+
+ICOBMP getICOBMP(char* fileName);
+
+void putICOBMP(ICOBMP icobmp, char* fileName);
+
 
 #endif //STEGPAL_BITMAP_H

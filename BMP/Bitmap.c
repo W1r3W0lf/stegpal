@@ -13,18 +13,19 @@ BMP constructBMP(){
     memset(&bmp.bmpDIBHeader, 0, sizeof(BITMAPFILEHEADER));
     bmp.bmpDIBHeader    = constructDIBHeader();
     bmp.bmpPalette      = constructPalette();
-    bmp.bmpGap1         = constructGap();
+    bmp.bmpGap          = constructGap();
     bmp.bmpPixels       = constructPixels();
-
     return bmp;
 }
+
 
 void destructBMP(BMP bmp){
     destructDIBHeader(bmp.bmpDIBHeader);
     destructPalette(bmp.bmpPalette);
-    destructGap(bmp.bmpGap1);
+    destructGap(bmp.bmpGap);
     destructPixels(bmp.bmpPixels);
 }
+
 
 BMP getBMP(char* fileName){
     FILE* fileIn = fopen(fileName, "r");
@@ -33,45 +34,62 @@ BMP getBMP(char* fileName){
     bmp.bmpFileHeader   = getBMPHead(fileIn);
     bmp.bmpDIBHeader    = getDIBHeader(fileIn);
     bmp.bmpPalette      = getPalette(bmp.bmpDIBHeader, fileIn);
-    bmp.bmpGap1         = getGap1(bmp.bmpFileHeader, fileIn);
+    bmp.bmpGap          = getGap(bmp.bmpFileHeader, fileIn);
     bmp.bmpPixels       = getPixels(bmp.bmpDIBHeader , fileIn);
-
     fclose(fileIn);
 
     return bmp;
 }
 
-void copyBMP(char* nameIn, char* nameOut){
-    FILE* fileIn = fopen(nameIn, "r");
-    FILE* fileOut = fopen(nameOut, "w");
 
-    BMP bmp = constructBMP();
-    bmp.bmpFileHeader   = getBMPHead(fileIn);
+void putBMP(BMP bmp, char* fileName) {
+    FILE* fileOut = fopen(fileName, "w");
+
     putBMPHead(bmp.bmpFileHeader, fileOut);
-    bmp.bmpDIBHeader    = getDIBHeader(fileIn);
     putDIBHeader(bmp.bmpDIBHeader, fileOut);
-    bmp.bmpPalette      = getPalette(bmp.bmpDIBHeader, fileIn);
     putPalette(bmp.bmpPalette, fileOut);
-    bmp.bmpGap1         = getGap1(bmp.bmpFileHeader, fileIn);
-    putGap(bmp.bmpGap1, fileOut);
-    bmp.bmpPixels       = getPixels(bmp.bmpDIBHeader , fileIn);
+    putGap(bmp.bmpGap, fileOut);
     putPixels(bmp.bmpPixels, fileOut);
 
-    destructBMP(bmp);
-
-    fclose(fileIn);
     fclose(fileOut);
 }
 
 
-void putBMP(BMP *bmp, char* fileName) {
+ICOBMP constructICOBMP(){
+    ICOBMP bmp;
+    bmp.bmpDIBHeader    = constructDIBHeader();
+    bmp.bmpPalette      = constructPalette();
+    bmp.bmpPixels       = constructPixels();
+    return bmp;
+}
+
+
+void destructICOBMP(ICOBMP icobmp){
+    destructDIBHeader(icobmp.bmpDIBHeader);
+    destructPalette(icobmp.bmpPalette);
+    destructPixels(icobmp.bmpPixels);
+}
+
+
+ICOBMP getICOBMP(char* fileName){
+    FILE* fileIn = fopen(fileName, "r");
+
+    ICOBMP bmp = constructICOBMP();
+    bmp.bmpDIBHeader    = getDIBHeader(fileIn);
+    bmp.bmpPalette      = getPalette(bmp.bmpDIBHeader, fileIn);
+    bmp.bmpPixels       = getPixels(bmp.bmpDIBHeader , fileIn);
+    fclose(fileIn);
+
+    return bmp;
+}
+
+
+void putICOBMP(ICOBMP icobmp, char* fileName){
     FILE* fileOut = fopen(fileName, "w");
 
-    putBMPHead(bmp->bmpFileHeader, fileOut);
-    putDIBHeader(bmp->bmpDIBHeader, fileOut);
-    putPalette(bmp->bmpPalette, fileOut);
-    putGap(bmp->bmpGap1, fileOut);
-    putPixels(bmp->bmpPixels, fileOut);
+    putDIBHeader(icobmp.bmpDIBHeader, fileOut);
+    putPalette(icobmp.bmpPalette, fileOut);
+    putPixels(icobmp.bmpPixels, fileOut);
 
     fclose(fileOut);
 }

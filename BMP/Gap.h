@@ -15,12 +15,9 @@ typedef struct Gap{
 
 Gap constructGap();
 
-Gap getGap1(BITMAPFILEHEADER bitmapfileheader, FILE *fileIn);
-
-Gap getGap2(DIBHeader dibHeader, FILE *fileIn);
+Gap getGap(BITMAPFILEHEADER bitmapfileheader, FILE *fileIn);
 
 void putGap(Gap gap, FILE *fileOut);
-
 
 void destructGap(Gap gap);
 

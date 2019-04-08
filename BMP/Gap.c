@@ -12,7 +12,7 @@ Gap constructGap(){
     return gap;
 }
 
-Gap getGap1(BITMAPFILEHEADER bitmapfileheader, FILE *fileIn){
+Gap getGap(BITMAPFILEHEADER bitmapfileheader, FILE *fileIn){
     long position = ftell(fileIn);
     Gap gap = constructGap();
     gap.size = position - bitmapfileheader.bfOffBits;
@@ -27,19 +27,6 @@ Gap getGap1(BITMAPFILEHEADER bitmapfileheader, FILE *fileIn){
         exit(1);
     }
 
-    return gap;
-}
-
-Gap getGap2(DIBHeader dibHeader, FILE *fileIn){
-    long position = ftell(fileIn);
-    Gap gap = constructGap();
-    if(dibHeader.type == v5){
-
-        gap.size = position - dibHeader.v5->bV5ProfileData;
-        // I have to learn how to locate the ICC
-        //TODO finish GAP2
-
-    }
     return gap;
 }
 
