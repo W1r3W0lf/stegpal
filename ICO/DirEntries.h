@@ -6,8 +6,10 @@
 #define STEGPAL_DIRENTRIES_H
 
 #include "../wordDefine.h"
+#include <stdio.h>
 
-typedef struct
+
+typedef struct __attribute__((__packed__))
 {
     BYTE        bWidth;          // Width, in pixels, of the image
     BYTE        bHeight;         // Height, in pixels, of the image
@@ -18,5 +20,9 @@ typedef struct
     DWORD       dwBytesInRes;    // How many bytes in this resource?
     DWORD       dwImageOffset;   // Where in the file is this image?
 } ICONDIRENTRY, *LPICONDIRENTRY;
+
+ICONDIRENTRY getICONDIRENTRY(FILE* fileIn);
+
+void putICONDIRENTRY(ICONDIRENTRY icondirentry, FILE* fileOut);
 
 #endif //STEGPAL_DIRENTRIES_H

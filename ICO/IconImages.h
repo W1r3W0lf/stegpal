@@ -7,15 +7,24 @@
 
 
 #include "../wordDefine.h"
-#include "../BMP/DIBHeader.h"
 #include "../BMP/Palette.h"
+#include <stdio.h>
 
 typedef struct ICONIMAGE
 {
   BITMAPINFOHEADER  icHeader;      // DIB header
-  RGBQUAD           icColors[1];   // Color table
-  BYTE              icXOR[1];      // DIB bits for XOR mask
-  BYTE              icAND[1];      // DIB bits for AND mask
+  int               colorSize;
+  RGBQUAD**         icColors;   // Color table
+  int               xorSize;
+  BYTE**            icXOR;      // DIB bits for XOR mask
+  int               andSize;
+  BYTE**            icAND;      // DIB bits for AND mask
 } ICONIMAGE, *LPICONIMAGE;
+
+ICONIMAGE getICONIMAGE(FILE* fileIn);
+
+int getICONIMAGEsize(DIBHeader dibHeader);
+
+void putICONIMAGE(ICONIMAGE iconimage, FILE* fileOut);
 
 #endif //STEGPAL_ICONIMAGES_H

@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 
-// TODO Palette
 
 typedef struct tagRGBQUAD {
     BYTE rgbBlue;

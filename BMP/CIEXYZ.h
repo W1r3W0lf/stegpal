@@ -7,7 +7,6 @@
 
 #include "../wordDefine.h"
 
-// TODO CIEXYZ
 
 /*
  * Microsoft definitions
