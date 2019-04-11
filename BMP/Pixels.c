@@ -40,8 +40,7 @@ Pixels getPixels(DIBHeader dibHeader ,FILE *fileIn){
             pixels.bits = dibHeader.info->biBitCount;
             pixels.height = dibHeader.info->biHeight;
             pixels.width = dibHeader.info->biWidth;
-            int rowSizeInfo = (int)(1+((pixels.bits * pixels.width -1))/32.0)*4;
-            pixels.size = rowSizeInfo * pixels.height;
+            pixels.size = dibHeader.info->biSizeImage;
             break;
         case v4:
             pixels.bits = dibHeader.v4->bV4BitCount;

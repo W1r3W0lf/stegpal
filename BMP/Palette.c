@@ -15,7 +15,7 @@ Palette constructPalette(){
 }
 
 void destructPalette(Palette palette){
-    if(palette.size) {
+    if(palette.pRgbquad) {
         free(palette.pRgbquad);
     }
 }
@@ -64,7 +64,7 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
 
     palette.pRgbquad = malloc(palette.size);
 
-    // What if there is no pallet?
+    // Does not currently work for bitmaps with pallets.
 
     if(fread(palette.pRgbquad, palette.size, 1, filein) != 1){
         fprintf(stderr, "ERROR failed to read in palette. palette size %d\n", palette.size );

@@ -8,11 +8,12 @@
 
 #include "../wordDefine.h"
 #include "../BMP/Palette.h"
+#include "../BMP/DIBHeader.h"
 #include <stdio.h>
 
 typedef struct ICONIMAGE
 {
-  BITMAPINFOHEADER  icHeader;      // DIB header
+  BITMAPINFOHEADER  icHeader;   // DIB header
   int               colorSize;
   RGBQUAD**         icColors;   // Color table
   int               xorSize;
@@ -21,9 +22,11 @@ typedef struct ICONIMAGE
   BYTE**            icAND;      // DIB bits for AND mask
 } ICONIMAGE, *LPICONIMAGE;
 
-ICONIMAGE getICONIMAGE(FILE* fileIn);
+ICONIMAGE constructICONIMAGE();
 
-int getICONIMAGEsize(DIBHeader dibHeader);
+void destructICONIMAGE(ICONIMAGE iconimage);
+
+ICONIMAGE getICONIMAGE(FILE* fileIn);
 
 void putICONIMAGE(ICONIMAGE iconimage, FILE* fileOut);
 
