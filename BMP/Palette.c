@@ -48,13 +48,13 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
             palette.size = 0;
             break;
         case info:
-            palette.size = dibHeader.info->biClrUsed;
+            palette.size = dibHeader.info->biClrUsed * sizeof(RGBQUAD);
             break;
         case v4:
-            palette.size = dibHeader.v4->bV4ClrUsed;
+            palette.size = dibHeader.v4->bV4ClrUsed * sizeof(RGBQUAD);
             break;
         case v5:
-            palette.size = dibHeader.v5->bV5ClrUsed;
+            palette.size = dibHeader.v5->bV5ClrUsed * sizeof(RGBQUAD);
             break;
     }
 

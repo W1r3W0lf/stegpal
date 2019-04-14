@@ -12,6 +12,7 @@ Gap constructGap(){
     return gap;
 }
 
+//TODO There is a bug with gap that causes it to crash
 Gap getGap(BITMAPFILEHEADER bitmapfileheader, FILE *fileIn){
     long position = ftell(fileIn);
     Gap gap = constructGap();
