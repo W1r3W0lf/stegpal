@@ -48,13 +48,13 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
             palette.size = 0;
             break;
         case info:
-            palette.size = dibHeader.info->biClrUsed * sizeof(RGBQUAD);
+            palette.size = dibHeader.info->biClrUsed;
             break;
         case v4:
-            palette.size = dibHeader.v4->bV4ClrUsed * sizeof(RGBQUAD);
+            palette.size = dibHeader.v4->bV4ClrUsed;
             break;
         case v5:
-            palette.size = dibHeader.v5->bV5ClrUsed * sizeof(RGBQUAD);
+            palette.size = dibHeader.v5->bV5ClrUsed;
             break;
     }
 
@@ -62,7 +62,7 @@ Palette getPalette(DIBHeader dibHeader, FILE *filein){
         return palette;
     }
 
-    palette.pRgbquad = malloc(palette.size);
+    palette.pRgbquad = calloc(palette.size, sizeof(RGBQUAD));
 
     // Does not currently work for bitmaps with pallets.
 

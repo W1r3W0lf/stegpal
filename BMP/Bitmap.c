@@ -34,7 +34,7 @@ BMP getBMP(char* fileName){
     bmp.bmpFileHeader   = getBMPHead(fileIn);
     bmp.bmpDIBHeader    = getDIBHeader(fileIn);
     bmp.bmpPalette      = getPalette(bmp.bmpDIBHeader, fileIn);
-    bmp.bmpGap          = getGap(bmp.bmpFileHeader, fileIn);
+//    bmp.bmpGap          = getGap(bmp.bmpFileHeader, fileIn);
     bmp.bmpPixels       = getPixels(bmp.bmpDIBHeader , fileIn);
     fclose(fileIn);
 

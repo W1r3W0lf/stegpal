@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
         fprintf(stderr, "ERROR not enough inputs\n");
         exit(1);
     }
-
+    
     BMP test = getBMP(argv[1]);
     putBMP(test, argv[2]);
     destructBMP(test);

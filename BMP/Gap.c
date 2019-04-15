@@ -16,7 +16,7 @@ Gap constructGap(){
 Gap getGap(BITMAPFILEHEADER bitmapfileheader, FILE *fileIn){
     long position = ftell(fileIn);
     Gap gap = constructGap();
-    gap.size = position - bitmapfileheader.bfOffBits;
+    gap.size = bitmapfileheader.bfOffBits - position;
 
     if(!gap.size)
         return gap;
