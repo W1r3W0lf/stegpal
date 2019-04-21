@@ -14,6 +14,10 @@ int main(int argc, char** argv) {
 
     Histogram spread = getHistogram(test);
 
+    for (int i = 0; i < spread.size ; ++i) {
+        printf("%i : %i\n",i ,  spread.histogram[i]);
+    }
+
     putBMP(test, argv[2]);
     destructBMP(test);
 

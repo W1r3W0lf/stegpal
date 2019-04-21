@@ -16,7 +16,7 @@ struct BMPDataNode {
 };
 
 typedef struct Histogram{
-    unsigned int**   histogram;
+    unsigned int*   histogram;
     int     size;
 }Histogram;
 

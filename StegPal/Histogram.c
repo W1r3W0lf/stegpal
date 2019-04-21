@@ -10,12 +10,11 @@
 unsigned int getPixelValue(char *value, int bitLength, int subByteLocation){
     char emptyBox[4] = {0};
     char mask = 0;
-    char full = 0xff; // DEBUG ONLY
 
     if(bitLength < 8){
-        mask = full << (8 - bitLength);
-        emptyBox[3] = (*value & mask);
-        emptyBox[3] = emptyBox[0] >> subByteLocation * bitLength;
+        mask = 0xff << (8 - bitLength);
+        emptyBox[0] = (*value & mask);
+        emptyBox[0] = emptyBox[0] >> subByteLocation * bitLength;
     }else{
         //ERROR here
         memcpy(&emptyBox,value, bitLength/8);
@@ -27,12 +26,15 @@ unsigned int getPixelValue(char *value, int bitLength, int subByteLocation){
 Histogram getHistogram(BMP bmp){
     Histogram histogram = constructHistogram(bmp.bmpPalette.size);
     char* pixels = (char*)bmp.bmpPixels.pixels;
-    
+
+    unsigned int temp;
+
     for (int pixelOffset = 0; pixelOffset < bmp.bmpPixels.size ; pixelOffset++) {
 
+        temp = getPixelValue(&pixels[pixelOffset], bmp.bmpPixels.bits, 8/bmp.bmpPixels.bits - 1);
 
-        histogram.histogram[getPixelValue(&pixels[pixelOffset], bmp.bmpPixels.bits, 8/bmp.bmpPixels.bits - 1)]++;
-
+        histogram.histogram[temp]++;
+        
 
         for(int chunk = (8/bmp.bmpPixels.bits) - 2; chunk >= 0 ; chunk--){
 
