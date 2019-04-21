@@ -32,6 +32,6 @@ Histogram constructHistogram(int paletteSize);
 
 void destructHisHistogram(Histogram histogram);
 
-Histogram getHistogram(BMP *bmp);
+Histogram getHistogram(BMP bmp);
 
 #endif //STEGPAL_HISTOGRAM_H
