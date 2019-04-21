@@ -16,7 +16,7 @@ struct BMPDataNode {
 };
 
 typedef struct Histogram{
-    int**   histogram;
+    unsigned int**   histogram;
     int     size;
 }Histogram;
 
@@ -26,6 +26,7 @@ BMPDataNode** getBMPData(BMP bmp);
 
 void setBMPData(BMP bmp, char** string, int stringSize);
 
+unsigned int getPixelValue(char *value, int bitLength, int subByteLocation);
 
 Histogram constructHistogram(int paletteSize);
 
