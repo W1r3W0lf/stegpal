@@ -7,9 +7,11 @@
 
 #include "../BMP/Bitmap.h"
 
-BMP writeMessageToBMP(BMP bmp);
+BMP writeMessageToBMP(BMP bmp, char* message );
 
 void readMessageFromBMP(BMP bmp);
+
+void readHexFromBMP(BMP bmp);
 
 int getSpaceInBMP(BMP bmp);
 

@@ -30,7 +30,7 @@ unsigned int getPixelValue(char *value, int bitLength, int subByteLocation);
 
 Histogram constructHistogram(int paletteSize);
 
-void destructHisHistogram(Histogram histogram);
+void destructHistogram(Histogram histogram);
 
 Histogram getHistogram(BMP bmp);
 

@@ -52,7 +52,7 @@ Histogram constructHistogram(int paletteSize){
 }
 
 
-void destructHisHistogram(Histogram histogram){
+void destructHistogram(Histogram histogram){
     free(histogram.histogram);
 }
 

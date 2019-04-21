@@ -12,7 +12,11 @@ int main(int argc, char** argv) {
 
     BMP test = getBMP(argv[1]);
 
-    printf("%i bytes", getSpaceInBMP(test));
+    printf("%i free bytes\n", getSpaceInBMP(test));
+    readHexFromBMP(test);
+    writeMessageToBMP(test,"best test");
+    readHexFromBMP(test);
+    readMessageFromBMP(test);
 
     putBMP(test, argv[2]);
     destructBMP(test);
