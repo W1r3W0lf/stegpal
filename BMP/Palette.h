@@ -21,7 +21,7 @@ typedef struct tagRGBQUAD {
 
 typedef struct Palette{
     int         size;
-    RGBQUAD**   pRgbquad;
+    RGBQUAD*   pRgbquad;
 } Palette;
 
 Palette constructPalette();

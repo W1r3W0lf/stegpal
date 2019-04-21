@@ -22,7 +22,7 @@ typedef struct Pixels{
     int height;
     int size;   //Number of bytes
     int bits;   //Number of bits per pixel
-    RGBTRIPLE **pixels;
+    RGBTRIPLE *pixels;
 } Pixels;
 
 

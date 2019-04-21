@@ -34,7 +34,6 @@ Histogram getHistogram(BMP bmp){
         temp = getPixelValue(&pixels[pixelOffset], bmp.bmpPixels.bits, 8/bmp.bmpPixels.bits - 1);
 
         histogram.histogram[temp]++;
-        
 
         for(int chunk = (8/bmp.bmpPixels.bits) - 2; chunk >= 0 ; chunk--){
 

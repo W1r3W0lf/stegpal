@@ -11,6 +11,6 @@ BMP writeMessageToBMP(BMP bmp);
 
 void readMessageFromBMP(BMP bmp);
 
-
+int getSpaceInBMP(BMP bmp);
 
 #endif //STEGPAL_STEGPAL_H

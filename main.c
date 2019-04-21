@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "BMP/Bitmap.h"
-#include "StegPal/Histogram.h"
+#include "StegPal/stegpal.h"
 
 int main(int argc, char** argv) {
 
@@ -12,11 +12,7 @@ int main(int argc, char** argv) {
 
     BMP test = getBMP(argv[1]);
 
-    Histogram spread = getHistogram(test);
-
-    for (int i = 0; i < spread.size ; ++i) {
-        printf("%i : %i\n",i ,  spread.histogram[i]);
-    }
+    printf("%i bytes", getSpaceInBMP(test));
 
     putBMP(test, argv[2]);
     destructBMP(test);
