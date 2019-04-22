@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
 
     printf("%i free bytes\n", getSpaceInBMP(test));
     readHexFromBMP(test);
-    writeMessageToBMP(test,"best test");
+    writeMessageToBMP(test,"best tests");
     readHexFromBMP(test);
     readMessageFromBMP(test);
 

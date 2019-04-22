@@ -16,8 +16,10 @@ BMP writeMessageToBMP(BMP bmp, char* message){
     for (int i = 0; i < histogram.size; ++i) {
         if(!histogram.histogram[i]){
 
+            memset(messageBuffer, 0, 4);
             for (int j = 0; j < 3 ; ++j) {
                 if(!*message){
+                    bmp.bmpPalette.pRgbquad[i] = *(RGBQUAD*)messageBuffer;
                     return bmp;
                 }
 
@@ -54,7 +56,7 @@ void readHexFromBMP(BMP bmp){
 
     for (int i = 0; i < histogram.size; ++i) {
         if(!histogram.histogram[i]){
-            printf("%i : %x \n", i ,  bmp.bmpPalette.pRgbquad[i] );
+            printf("%i : 0x%x \n", i ,  bmp.bmpPalette.pRgbquad[i] );
         }
     }
 
